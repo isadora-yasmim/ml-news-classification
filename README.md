@@ -134,17 +134,17 @@ Atualmente, o foco está na definição da arquitetura, stack e backlog inicial.
 
 ### 1. Setup inicial do projeto
 
-* [ ] Criar estrutura de pastas
+* [x] Criar estrutura de pastas
 * [ ] Configurar ambiente virtual
 * [ ] Criar `.gitignore`
-* [ ] Criar `README.md`
+* [x] Criar `README.md`
 * [ ] Definir dependências iniciais
 * [ ] Configurar lint e formatter
 
 ### 2. Dados
 
-* [ ] Escolher dataset de notícias
-* [ ] Armazenar dados brutos em `data/raw`
+* [x] Escolher dataset de notícias
+* [x] Armazenar dados brutos em `data/raw`
 * [ ] Criar script de carregamento dos dados
 * [ ] Criar etapa de limpeza textual
 * [ ] Criar versão processada dos dados
