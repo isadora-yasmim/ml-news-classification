@@ -171,7 +171,7 @@ pip install -r requirements.txt
 
 ## 📌 Roadmap
 
-* [ ] Versão 0.1: Setup inicial e escolha do dataset
+* [x] Versão 0.1: Setup inicial e escolha do dataset
 * [ ] Versão 0.2: Pipeline de pré-processamento
 * [ ] Versão 0.3: Modelo baseline
 * [ ] Versão 0.4: Tracking com MLflow
