@@ -34,10 +34,10 @@ Preparar o repositório, entender o dataset e deixar a base pronta para experime
 - [x] Conferir colunas disponíveis
 - [x] Identificar coluna de texto
 - [x] Identificar coluna de categoria
-- [ ] Verificar quantidade de categorias
-- [ ] Verificar quantidade de registros por categoria
-- [ ] Verificar valores nulos
-- [ ] Verificar textos duplicados
+- [x] Verificar quantidade de categorias
+- [x] Verificar quantidade de registros por categoria
+- [x] Verificar valores nulos
+- [x] Verificar textos duplicados
 
 ### Análise exploratória
 - [ ] Analisar distribuição das categorias
