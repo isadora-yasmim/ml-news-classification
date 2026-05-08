@@ -29,7 +29,7 @@ Preparar o repositório, entender o dataset e deixar a base pronta para experime
 - [x] Criar pasta `reports/`
 - [x] Criar pasta `tests/`
 
-### Dataset
+### [Dataset](relatorio_dataset.md)
 - [x] Baixar dataset de notícias
 - [x] Conferir colunas disponíveis
 - [x] Identificar coluna de texto
@@ -39,12 +39,12 @@ Preparar o repositório, entender o dataset e deixar a base pronta para experime
 - [x] Verificar valores nulos
 - [x] Verificar textos duplicados
 
-### Análise exploratória
+### [Análise exploratória](notebooks\eda.ipynb)
 - [ ] Analisar distribuição das categorias
 - [ ] Analisar tamanho médio dos textos
 - [ ] Verificar categorias muito desbalanceadas
 - [ ] Decidir se vai usar apenas `headline` ou `headline + short_description`
-- [ ] Criar notebook de EDA
+- [x] Criar notebook de EDA
 
 ### Entregáveis da semana
 - [x] Repositório organizado
