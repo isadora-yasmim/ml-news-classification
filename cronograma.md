@@ -39,17 +39,17 @@ Preparar o repositório, entender o dataset e deixar a base pronta para experime
 - [x] Verificar valores nulos
 - [x] Verificar textos duplicados
 
-### [Análise exploratória](notebooks\eda.ipynb)
-- [ ] Analisar distribuição das categorias
-- [ ] Analisar tamanho médio dos textos
-- [ ] Verificar categorias muito desbalanceadas
-- [ ] Decidir se vai usar apenas `headline` ou `headline + short_description`
+### [Análise exploratória](notebooks\01_eda_news_dataset.ipynb)
+- [x] Analisar distribuição das categorias
+- [x] Analisar tamanho médio dos textos
+- [x] Verificar categorias muito desbalanceadas
+- [x] Decidir se vai usar apenas `headline` ou `headline + short_description`
 - [x] Criar notebook de EDA
 
 ### Entregáveis da semana
 - [x] Repositório organizado
 - [x] Dataset armazenado localmente
-- [ ] Notebook inicial de análise exploratória
+- [x] Notebook inicial de análise exploratória
 - [x] README inicial atualizado
 - [x] Primeiro commit da estrutura base
 
