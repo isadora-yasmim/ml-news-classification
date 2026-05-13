@@ -63,14 +63,14 @@ Criar o primeiro pipeline funcional de classificação usando modelos clássicos
 ## Checklist
 
 ### Preparação dos dados
-- [ ] Carregar dataset com Pandas
-- [ ] Remover registros com texto vazio
-- [ ] Remover registros sem categoria
-- [ ] Criar coluna `text` juntando `headline + short_description`
-- [ ] Criar coluna `label` com a categoria
-- [ ] Normalizar textos
-- [ ] Separar dados em treino e teste
-- [ ] Garantir split estratificado por categoria
+- [x] Carregar dataset com Pandas
+- [x] Remover registros com texto vazio
+- [x] Remover registros sem categoria
+- [x] Criar coluna `text` juntando `headline + short_description`
+- [x] Criar coluna `label` com a categoria
+- [x] Normalizar textos
+- [x] Separar dados em treino e teste
+- [x] Garantir split estratificado por categoria
 
 ### Baseline
 - [ ] Criar pipeline com `TfidfVectorizer`
