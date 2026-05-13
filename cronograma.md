@@ -73,7 +73,7 @@ Criar o primeiro pipeline funcional de classificação usando modelos clássicos
 - [x] Garantir split estratificado por categoria
 
 ### Baseline
-- [ ] Criar pipeline com `TfidfVectorizer`
+- [x] Criar pipeline com `TfidfVectorizer`
 - [ ] Treinar modelo Naive Bayes
 - [ ] Avaliar baseline
 - [ ] Salvar métricas iniciais
