@@ -79,12 +79,12 @@ Criar o primeiro pipeline funcional de classificação usando modelos clássicos
 - [x] Salvar métricas iniciais
 
 ### Modelos clássicos
-- [ ] Treinar Logistic Regression
-- [ ] Treinar Linear SVM
+- [x] Treinar Logistic Regression
+- [x] Treinar Linear SVM
 - [ ] Comparar modelos
-- [ ] Gerar `classification_report`
-- [ ] Gerar matriz de confusão
-- [ ] Identificar categorias com pior desempenho
+- [x] Gerar `classification_report`
+- [x] Gerar matriz de confusão
+- [x] Identificar categorias com pior desempenho
 
 ### Organização do código
 - [ ] Transformar notebook em scripts
