@@ -1,0 +1,4 @@
+=== BASELINE NAIVE BAYES ===
+
+Acurácia no treino: 0.5524
+Acurácia no teste: 0.5221
