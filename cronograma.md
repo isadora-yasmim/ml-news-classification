@@ -74,9 +74,9 @@ Criar o primeiro pipeline funcional de classificação usando modelos clássicos
 
 ### Baseline
 - [x] Criar pipeline com `TfidfVectorizer`
-- [ ] Treinar modelo Naive Bayes
-- [ ] Avaliar baseline
-- [ ] Salvar métricas iniciais
+- [x] Treinar modelo Naive Bayes
+- [x] Avaliar baseline
+- [x] Salvar métricas iniciais
 
 ### Modelos clássicos
 - [ ] Treinar Logistic Regression
