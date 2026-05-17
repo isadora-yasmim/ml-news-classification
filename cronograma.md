@@ -222,10 +222,10 @@ Escolher uma das opções:
 
 Ao final do cronograma, o projeto deve conter:
 
-- [ ] Dataset tratado
-- [ ] Análise exploratória
-- [ ] Pipeline de treinamento
-- [ ] Modelo baseline
+- [x] Dataset tratado
+- [x] Análise exploratória
+- [x] Pipeline de treinamento
+- [x] Modelo baseline
 - [ ] Modelo otimizado
 - [ ] Avaliação com métricas
 - [ ] Gráficos de resultados
@@ -240,7 +240,7 @@ Ao final do cronograma, o projeto deve conter:
 
 Se sobrar tempo:
 
-- [ ] Adicionar Docker
+- [x] Adicionar Docker
 - [ ] Adicionar MLflow
 - [ ] Adicionar DVC para versionamento de dados
 - [ ] Criar GitHub Actions para testes
