@@ -1,0 +1,48 @@
+                precision    recall  f1-score   support
+
+          ARTS       0.38      0.17      0.23       302
+ARTS & CULTURE       0.36      0.14      0.20       268
+  BLACK VOICES       0.46      0.32      0.38       917
+      BUSINESS       0.47      0.45      0.46      1198
+       COLLEGE       0.45      0.31      0.37       229
+        COMEDY       0.56      0.39      0.46      1080
+         CRIME       0.54      0.52      0.53       712
+CULTURE & ARTS       0.59      0.19      0.29       215
+       DIVORCE       0.81      0.64      0.71       685
+     EDUCATION       0.45      0.29      0.35       203
+ ENTERTAINMENT       0.53      0.73      0.62      3473
+   ENVIRONMENT       0.59      0.21      0.31       289
+         FIFTY       0.48      0.11      0.18       280
+  FOOD & DRINK       0.58      0.68      0.63      1268
+     GOOD NEWS       0.41      0.13      0.20       280
+         GREEN       0.38      0.28      0.32       524
+HEALTHY LIVING       0.39      0.19      0.26      1337
+ HOME & LIVING       0.67      0.67      0.67       861
+        IMPACT       0.41      0.25      0.31       697
+ LATINO VOICES       0.67      0.22      0.33       226
+         MEDIA       0.58      0.36      0.44       589
+         MONEY       0.49      0.27      0.35       351
+     PARENTING       0.49      0.64      0.56      1752
+       PARENTS       0.44      0.20      0.28       780
+      POLITICS       0.66      0.85      0.74      7119
+  QUEER VOICES       0.77      0.62      0.69      1269
+      RELIGION       0.58      0.40      0.47       513
+       SCIENCE       0.58      0.38      0.46       441
+        SPORTS       0.63      0.63      0.63      1015
+         STYLE       0.58      0.18      0.28       450
+STYLE & BEAUTY       0.70      0.77      0.73      1958
+         TASTE       0.40      0.09      0.15       419
+          TECH       0.55      0.40      0.46       416
+ THE WORLDPOST       0.48      0.37      0.42       733
+        TRAVEL       0.63      0.77      0.69      1980
+     U.S. NEWS       0.49      0.08      0.13       275
+      WEDDINGS       0.78      0.71      0.75       731
+    WEIRD NEWS       0.39      0.26      0.31       555
+      WELLNESS       0.52      0.79      0.62      3589
+         WOMEN       0.41      0.32      0.36       703
+    WORLD NEWS       0.47      0.29      0.36       660
+     WORLDPOST       0.42      0.23      0.30       516
+
+      accuracy                           0.58     41858
+     macro avg       0.53      0.39      0.43     41858
+  weighted avg       0.56      0.58      0.55     41858
