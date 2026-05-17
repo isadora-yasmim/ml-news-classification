@@ -87,18 +87,18 @@ Criar o primeiro pipeline funcional de classificação usando modelos clássicos
 - [x] Identificar categorias com pior desempenho
 
 ### Organização do código
-- [ ] Transformar notebook em scripts
-- [ ] Criar script de treinamento
-- [ ] Criar script de avaliação
-- [ ] Criar arquivo de configuração simples
-- [ ] Salvar modelo treinado em `models/`
+- [x] Transformar notebook em scripts
+- [x] Criar script de treinamento
+- [x] Criar script de avaliação
+- [x] Criar arquivo de configuração simples
+- [x] Salvar modelo treinado em `models/`
 
 ### Entregáveis da semana
-- [ ] Primeiro modelo funcional
-- [ ] Métricas de baseline documentadas
-- [ ] Comparação entre modelos
-- [ ] Scripts iniciais em `src/`
-- [ ] README atualizado com como treinar o modelo
+- [x] Primeiro modelo funcional
+- [x] Métricas de baseline documentadas
+- [x] Comparação entre modelos
+- [x] Scripts iniciais em `src/`
+- [x] README atualizado com como treinar o modelo
 
 ---
 
