@@ -1,0 +1,5 @@
+model,source_file,train_accuracy,test_accuracy,accuracy,precision_macro,recall_macro,f1_macro,f1_weighted,best_cv_score,best_params
+logistic_regression,"logistic_regression_gridsearch_results.json, classic_models_comparison.csv, logistic_regression_classification_report.txt",0.6401439519841222,0.58,0.58,0.53,0.502001785516697,0.4700128579733094,0.5715755832188444,0.4613701026285333,"{""model__C"": 10.0, ""model__class_weight"": ""balanced"", ""tfidf__max_features"": 20000, ""tfidf__ngram_range"": [1, 1], ""tfidf__stop_words"": null}"
+linear_svm,"classic_models_comparison.csv, linear_svm_classification_report.txt",0.6940960556678105,0.571766448468632,0.571766448468632,0.47,0.41,0.42,0.55,,{}
+classification_report,classification_report.txt,,0.57,0.57,0.47,0.41,0.42,0.55,,{}
+naive_bayes,baseline_metrics.txt,0.5524,0.5221,0.5221,,,,,,{}
