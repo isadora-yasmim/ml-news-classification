@@ -110,12 +110,12 @@ Melhorar a qualidade do modelo, organizar experimentos e iniciar práticas de ML
 ## Checklist
 
 ### Melhorias no modelo
-- [ ] Testar diferentes parâmetros do TF-IDF
-- [ ] Testar `ngram_range`
-- [ ] Testar limite de features
-- [ ] Testar remoção de stopwords
-- [ ] Testar balanceamento de classes
-- [ ] Rodar GridSearchCV ou RandomizedSearchCV
+- [x] Testar diferentes parâmetros do TF-IDF
+- [x] Testar `ngram_range`
+- [x] Testar limite de features
+- [x] Testar remoção de stopwords
+- [x] Testar balanceamento de classes
+- [x] Rodar GridSearchCV 
 
 ### Avaliação
 - [ ] Comparar métricas entre versões

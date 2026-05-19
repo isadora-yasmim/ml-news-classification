@@ -1,0 +1,20 @@
+{
+    "best_params": {
+        "model__C": 10.0,
+        "model__class_weight": "balanced",
+        "tfidf__max_features": 20000,
+        "tfidf__ngram_range": [
+            1,
+            1
+        ],
+        "tfidf__stop_words": null
+    },
+    "best_cv_score": 0.4613701026285333,
+    "test_metrics": {
+        "accuracy": 0.5570022456878017,
+        "precision_macro": 0.4507422523170622,
+        "recall_macro": 0.502001785516697,
+        "f1_macro": 0.4700128579733094,
+        "f1_weighted": 0.5715755832188444
+    }
+}
