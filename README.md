@@ -1,6 +1,3 @@
-Aqui está o README atualizado com a **Semana 2 — Pré-processamento e baseline de Machine Learning** incluída:
-
-````md
 # 📰 ML News Classification
 
 > Projeto em desenvolvimento para construção de um classificador de notícias usando Machine Learning, com foco em aprendizado prático de aplicações de ML e MLOps.
@@ -353,7 +350,6 @@ Commits seguem padrão semântico, usando Conventional Commits:
 
 Este projeto está em desenvolvimento para fins de estudo e portfólio.
 
-````
 
 Commit sugerido:
 
