@@ -2,7 +2,9 @@
 
 > Projeto em desenvolvimento para construção de um classificador de notícias usando Machine Learning, com foco em aprendizado prático de aplicações de ML e MLOps.
 
-## 📌 Sobre o projeto
+---
+
+# 📌 Sobre o projeto
 
 O **ML News Classification** é um projeto end-to-end de classificação automática de notícias.
 
@@ -14,6 +16,7 @@ O objetivo é construir uma pipeline completa de Machine Learning, passando por:
 - Treinamento de modelos
 - Avaliação de desempenho
 - Comparação entre modelos
+- Otimização de hiperparâmetros
 - Versionamento de experimentos
 - Organização do código para produção
 - Práticas de MLOps
@@ -22,7 +25,7 @@ Este projeto ainda está em desenvolvimento e será evoluído de forma increment
 
 ---
 
-## 🎯 Objetivos
+# 🎯 Objetivos
 
 - Aprender aplicações práticas de Machine Learning em NLP
 - Criar um classificador de notícias por categoria
@@ -32,7 +35,7 @@ Este projeto ainda está em desenvolvimento e será evoluído de forma increment
 
 ---
 
-## 🧠 Problema
+# 🧠 Problema
 
 Dado o texto de uma notícia, o sistema deverá prever automaticamente sua categoria.
 
@@ -44,22 +47,9 @@ headline + " " + short_description
 
 A categoria da notícia é usada como variável alvo do modelo.
 
-Exemplos de categorias presentes no dataset:
-
-* Politics
-* Wellness
-* Entertainment
-* Travel
-* Style & Beauty
-* Parenting
-* Food & Drink
-* Business
-* Sports
-* Technology
-
 ---
 
-## 🗂️ Dataset
+# 🗂️ Dataset
 
 O projeto utiliza um dataset de notícias contendo informações como:
 
@@ -70,73 +60,55 @@ O projeto utiliza um dataset de notícias contendo informações como:
 * Autor
 * Data de publicação
 
-Exemplo de registro:
+Exemplo:
 
 ```json
 {
-  "link": "https://www.huffpost.com/entry/covid-boosters-uptake-us_n_632d719ee4b087fae6feaac9",
   "headline": "Over 4 Million Americans Roll Up Sleeves For Omicron-Targeted COVID Boosters",
   "category": "U.S. NEWS",
-  "short_description": "Health experts said it is too early to predict whether demand would match up with the 171 million doses of the new boosters the U.S. ordered for the fall.",
-  "authors": "Carla K. Johnson, AP",
-  "date": "2022-09-23"
+  "short_description": "Health experts said it is too early to predict whether demand would match up with the new boosters."
 }
 ```
 
 ---
 
-## 🛠️ Stack utilizada
+# 🛠️ Stack utilizada
 
-### Linguagem
-
-* Python
-
-### Machine Learning
+## Machine Learning e NLP
 
 * Scikit-learn
 * Pandas
 * NumPy
-
-### NLP
-
 * TF-IDF
-* Bag of Words
-* Normalização textual
+* Logistic Regression
+* Linear SVM
+* Naive Bayes
 
-### Visualização e análise
+## Visualização e análise
 
 * Matplotlib
-* Seaborn
 * Jupyter Notebook
 
-### Persistência de modelos
+## Persistência de modelos
 
 * Joblib
 
-### MLOps
+## Qualidade e organização
 
-* MLflow para tracking de experimentos
-* DVC para versionamento de dados
-* Docker para containerização
-* GitHub Actions para CI/CD
-
-### API e deploy
-
-* FastAPI
-* Uvicorn
-* Docker
-* Deploy futuro em Render, Railway ou similar
-
-### Qualidade de código
-
-* Pytest
 * Ruff
 * Black
-* Pre-commit
+* Pytest
+
+## Futuras ferramentas de MLOps
+
+* MLflow
+* DVC
+* Docker
+* FastAPI
 
 ---
 
-## 📁 Estrutura do projeto
+# 📁 Estrutura do projeto
 
 ```bash
 ml-news-classification/
@@ -146,22 +118,16 @@ ml-news-classification/
 │       ├── train_processed.csv
 │       └── test_processed.csv
 ├── models/
-│   └── news_classifier.joblib
+│   └── best_logistic_regression_model.joblib
 ├── notebooks/
-│   └── 01_eda_news_dataset.ipynb
 ├── reports/
+│   ├── experiments/
+│   ├── figures/
 │   └── metrics/
-│       ├── classification_report.txt
-│       ├── confusion_matrix.csv
-│       └── confusion_matrix.png
 ├── src/
-│   ├── config.py
 │   ├── data/
-│   │   ├── eda_news_dataset.py
-│   │   └── load_data.py
+│   ├── evaluation/
 │   └── models/
-│       ├── train_model.py
-│       └── evaluate_model.py
 ├── tests/
 ├── requirements.txt
 ├── README.md
@@ -170,73 +136,167 @@ ml-news-classification/
 
 ---
 
-## 🚧 Status do projeto
+# 🚧 Status do projeto
 
 Projeto em andamento.
 
 Atualmente, o projeto possui:
 
 * Dataset carregado e analisado
-* Dados tratados e separados em treino e teste
-* Pipeline TF-IDF criado
-* Modelo baseline com Naive Bayes treinado
-* Modelos clássicos treinados e comparados
+* Pipeline TF-IDF implementado
+* Baseline com Naive Bayes
+* Modelos clássicos treinados
+* Comparação entre modelos
 * Avaliação com métricas de classificação
-* Matriz de confusão gerada
-* Scripts iniciais organizados em `src/`
-* Modelo treinado salvo em `models/`
+* Matriz de confusão
+* Otimização inicial com GridSearchCV
+* Rastreamento inicial de experimentos
+* Comparação automática de métricas
+* Geração automática de gráficos
 
 ---
 
-## 📊 Métricas utilizadas
+# 📊 Resultados atuais
+
+## Modelos avaliados
+
+Até o momento foram avaliados:
+
+* Naive Bayes
+* Logistic Regression
+* Linear SVM
+* Logistic Regression com GridSearchCV
+
+## Métricas utilizadas
 
 As principais métricas usadas no projeto são:
 
 * Accuracy
 * Precision
 * Recall
-* F1-score
+* F1-score macro
+* F1-score weighted
 * Confusion Matrix
 
-Essas métricas ajudam a avaliar não apenas a taxa geral de acerto, mas também o desempenho do modelo em cada categoria.
+O projeto prioriza o **F1-score macro**, pois o dataset possui desbalanceamento entre categorias.
 
 ---
 
-## 🚀 Como rodar o projeto
+# 📈 Comparação entre modelos
 
-### 1. Clone o repositório
+Abaixo está o gráfico consolidado de comparação entre os experimentos realizados até o momento.
+
+## Comparação geral das métricas
+
+![Comparação de métricas](reports/figures/metrics_summary_comparison.png)
+
+---
+
+# 🧪 Resultados parciais
+
+## Baseline — Naive Bayes
+
+* Accuracy no teste: **0.5221** 
+
+## Logistic Regression
+
+* Accuracy: **0.57**
+* F1-score macro: **0.42**
+* F1-score weighted: **0.55** 
+
+## Linear SVM
+
+* Accuracy: **0.58**
+* F1-score macro: **0.43**
+* F1-score weighted: **0.55** 
+
+Até o momento, o **Linear SVM** apresenta o melhor desempenho geral considerando F1-score macro.
+
+---
+
+# 🔬 Semana 3 — Melhorias, experimentos e avaliação
+
+## Melhorias implementadas
+
+### Otimização de hiperparâmetros
+
+Foi criado um pipeline reproduzível utilizando:
+
+* `TfidfVectorizer`
+* `LogisticRegression`
+* `GridSearchCV`
+
+Os seguintes parâmetros foram testados:
+
+* `ngram_range`
+* `max_features`
+* `stop_words`
+* `class_weight`
+* `C`
+
+---
+
+## Avaliação e comparação
+
+Foi implementado um sistema automatizado para:
+
+* Comparar métricas entre modelos
+* Consolidar resultados
+* Gerar gráficos automaticamente
+* Identificar o melhor modelo
+* Salvar experimentos em `.json` e `.csv`
+
+Os gráficos são gerados automaticamente em:
+
+```text
+reports/figures/
+```
+
+---
+
+# 🚀 Como rodar o projeto
+
+## 1. Clone o repositório
 
 ```bash
 git clone https://github.com/seu-usuario/ml-news-classification.git
 ```
 
-### 2. Acesse a pasta do projeto
+---
+
+## 2. Acesse a pasta
 
 ```bash
 cd ml-news-classification
 ```
 
-### 3. Crie o ambiente virtual
+---
+
+## 3. Crie o ambiente virtual
 
 ```bash
 python -m venv .venv
 ```
 
-### 4. Ative o ambiente virtual
+---
 
-No Windows:
+## 4. Ative o ambiente virtual
+
+### Windows
 
 ```bash
 .venv\Scripts\activate
 ```
 
-No Linux/Mac:
+### Linux/Mac
 
 ```bash
 source .venv/bin/activate
 ```
 
-### 5. Instale as dependências
+---
+
+## 5. Instale as dependências
 
 ```bash
 pip install -r requirements.txt
@@ -244,111 +304,109 @@ pip install -r requirements.txt
 
 ---
 
-## 🧪 Como executar os scripts
+# 🧪 Execução dos scripts
 
-### Gerar relatório de EDA
+## Pré-processamento
 
 ```bash
-python -m src.data.eda_news_dataset
+python -m src.data.load_data
 ```
 
-### Treinar o modelo
+## Treinamento dos modelos
 
 ```bash
 python -m src.models.train_model
 ```
 
-Esse comando treina o pipeline de classificação e salva o modelo em:
-
-```text
-models/news_classifier.joblib
-```
-
-### Avaliar o modelo
+## Avaliação
 
 ```bash
 python -m src.models.evaluate_model
 ```
 
-Esse comando gera os arquivos de avaliação em:
+## GridSearchCV
 
-```text
-reports/metrics/
+```bash
+python src/models/tune_model.py
 ```
 
-Incluindo:
+## Comparação de métricas
 
-```text
-classification_report.txt
-confusion_matrix.csv
-confusion_matrix.png
+```bash
+python src/evaluation/compare_experiments.py
+```
+
+## Matriz de confusão legível
+
+```bash
+python src/evaluation/plot_confusion_matrix.py
 ```
 
 ---
 
-## 🤖 Modelos implementados
+# 🤖 Modelos implementados
 
-Até o momento, foram utilizados modelos clássicos de Machine Learning:
+## Baseline
 
 * Naive Bayes
+
+## Modelos clássicos
+
 * Logistic Regression
 * Linear SVM
 
-O pipeline utiliza `TfidfVectorizer` para transformar os textos em representações numéricas antes do treinamento.
+## Modelos otimizados
+
+* Logistic Regression com GridSearchCV
 
 ---
 
-## 📌 Roadmap
+# 📌 Roadmap
 
-* [x] Versão 0.1: Setup inicial e escolha do dataset
-* [x] Versão 0.2: Pipeline de pré-processamento
-* [x] Versão 0.3: Modelo baseline
-* [x] Versão 0.4: Comparação com modelos clássicos
-* [x] Versão 0.5: Organização inicial dos scripts em `src/`
-* [ ] Versão 0.6: Tracking de experimentos com MLflow
-* [ ] Versão 0.7: Versionamento de dados com DVC
-* [ ] Versão 0.8: Testes automatizados
-* [ ] Versão 0.9: API com FastAPI
-* [ ] Versão 1.0: Pipeline completa com Docker e deploy
-
----
-
-## 🌿 GitHub Flow
-
-Este projeto segue o modelo **GitHub Flow**, um fluxo de trabalho simples e eficiente para desenvolvimento contínuo.
-
-### 🔄 Como funciona
-
-1. Criação de uma nova branch a partir da `main`
-2. Desenvolvimento da feature ou correção
-3. Commits pequenos e descritivos
-4. Abertura de Pull Request
-5. Revisão e validação
-6. Merge na `main`
-
-### 📌 Convenções adotadas
-
-Branches nomeadas por tipo:
-
-* `feat/...` → novas funcionalidades
-* `fix/...` → correções de bugs
-* `chore/...` → tarefas gerais
-* `docs/...` → documentação
-* `refactor/...` → refatorações de código
-
-Commits seguem padrão semântico, usando Conventional Commits:
-
-* `feat: ...`
-* `fix: ...`
-* `docs: ...`
-* `refactor: ...`
-* `chore: ...`
+* [x] Setup inicial
+* [x] Análise exploratória
+* [x] Pipeline TF-IDF
+* [x] Modelo baseline
+* [x] Comparação entre modelos clássicos
+* [x] Avaliação com métricas
+* [x] Matriz de confusão
+* [x] GridSearchCV
+* [x] Rastreamento inicial de experimentos
+* [x] Comparação automática de métricas
+* [ ] MLflow
+* [ ] DVC
+* [ ] API com FastAPI
+* [ ] Docker
+* [ ] CI/CD
+* [ ] Deploy
 
 ---
 
-## 📄 Licença
+# 🌿 GitHub Flow
 
-Este projeto está em desenvolvimento para fins de estudo e portfólio.
+Este projeto segue o modelo **GitHub Flow**.
+
+## Convenções de branches
+
+* `feat/...`
+* `fix/...`
+* `docs/...`
+* `refactor/...`
+* `chore/...`
+
+## Conventional Commits
+
+* `feat:`
+* `fix:`
+* `docs:`
+* `refactor:`
+* `chore:`
+
+---
+
+# 📄 Licença
+
+Projeto desenvolvido para fins de estudo, prática de Machine Learning e construção de portfólio.
 
 
 Commit sugerido:
