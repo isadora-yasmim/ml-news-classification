@@ -408,3 +408,10 @@ Este projeto segue o modelo **GitHub Flow**.
 
 Projeto desenvolvido para fins de estudo, prática de Machine Learning e construção de portfólio.
 
+
+Commit sugerido:
+
+```bash
+git add README.md
+git commit -m "docs: update readme with week 2 progress"
+````
