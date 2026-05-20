@@ -1,27 +1,30 @@
 from pathlib import Path
 
 import pandas as pd
-
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import (
-    accuracy_score,
-    classification_report,
-    confusion_matrix,
-)
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
+
+from src.utils.experiment_tracker import (
+    calculate_metrics,
+    create_experiment_id,
+    save_classification_report,
+    save_experiment,
+    save_worst_categories,
+)
 
 
 TRAIN_PATH = Path("data/processed/train_processed.csv")
 TEST_PATH = Path("data/processed/test_processed.csv")
 
-METRICS_DIR = Path("reports/metrics")
-METRICS_DIR.mkdir(parents=True, exist_ok=True)
+TFIDF_PARAMS = {
+    "max_features": 5000,
+    "ngram_range": (1, 2),
+    "stop_words": "english",
+    "lowercase": True,
+}
 
-BASELINE_METRICS_PATH = METRICS_DIR / "baseline_metrics.txt"
-CLASSIFICATION_REPORT_PATH = (
-    METRICS_DIR / "classification_report.txt"
-)
+MODEL_PARAMS = {}
 
 
 def load_data(path: Path) -> pd.DataFrame:
@@ -29,49 +32,12 @@ def load_data(path: Path) -> pd.DataFrame:
 
 
 def create_pipeline() -> Pipeline:
-    pipeline = Pipeline(
+    return Pipeline(
         steps=[
-            (
-                "tfidf",
-                TfidfVectorizer(
-                    max_features=5000,
-                    ngram_range=(1, 2),
-                    stop_words="english",
-                    lowercase=True,
-                ),
-            ),
-            (
-                "model",
-                MultinomialNB(),
-            ),
+            ("tfidf", TfidfVectorizer(**TFIDF_PARAMS)),
+            ("model", MultinomialNB(**MODEL_PARAMS)),
         ]
     )
-
-    return pipeline
-
-
-def save_metrics(
-    train_accuracy: float,
-    test_accuracy: float,
-    report: str,
-) -> None:
-    with open(BASELINE_METRICS_PATH, "w", encoding="utf-8") as file:
-        file.write("=== BASELINE NAIVE BAYES ===\n\n")
-        file.write(
-            f"Acurácia no treino: "
-            f"{train_accuracy:.4f}\n"
-        )
-        file.write(
-            f"Acurácia no teste: "
-            f"{test_accuracy:.4f}\n"
-        )
-
-    with open(
-        CLASSIFICATION_REPORT_PATH,
-        "w",
-        encoding="utf-8",
-    ) as file:
-        file.write(report)
 
 
 def main() -> None:
@@ -84,55 +50,50 @@ def main() -> None:
     X_test = test_df["text"]
     y_test = test_df["category"]
 
-    pipeline = create_pipeline()
+    model_name = "naive_bayes"
+    experiment_type = "baseline"
+    experiment_id = create_experiment_id(model_name, experiment_type)
 
+    pipeline = create_pipeline()
     pipeline.fit(X_train, y_train)
 
-    predictions = pipeline.predict(X_test)
-
     train_predictions = pipeline.predict(X_train)
+    test_predictions = pipeline.predict(X_test)
 
-    train_accuracy = accuracy_score(
-        y_train,
-        train_predictions,
+    train_metrics = calculate_metrics(y_train, train_predictions)
+    test_metrics = calculate_metrics(y_test, test_predictions)
+
+    report_path = save_classification_report(
+        y_true=y_test,
+        y_pred=test_predictions,
+        experiment_id=experiment_id,
     )
 
-    test_accuracy = accuracy_score(
-        y_test,
-        predictions,
+    worst_categories_path = save_worst_categories(
+        y_true=y_test,
+        y_pred=test_predictions,
+        model_name=model_name,
+        experiment_id=experiment_id,
     )
 
-    report = classification_report(
-        y_test,
-        predictions,
+    experiment_path = save_experiment(
+        experiment_id=experiment_id,
+        model_name=model_name,
+        experiment_type=experiment_type,
+        train_metrics=train_metrics,
+        test_metrics=test_metrics,
+        tfidf_params=TFIDF_PARAMS,
+        model_params=MODEL_PARAMS,
+        artifacts={
+            "classification_report": str(report_path),
+            "worst_categories": str(worst_categories_path),
+        },
     )
 
-    save_metrics(
-        train_accuracy=train_accuracy,
-        test_accuracy=test_accuracy,
-        report=report,
-    )
-
-    print("Modelo avaliado com sucesso!\n")
-
-    print("=== BASELINE ===")
-    print(
-        f"Acurácia treino: "
-        f"{train_accuracy:.4f}"
-    )
-    print(
-        f"Acurácia teste: "
-        f"{test_accuracy:.4f}"
-    )
-
-    print("\n=== CLASSIFICATION REPORT ===\n")
-    print(report)
-
-    print(
-        "\nMétricas salvas em:"
-    )
-    print(BASELINE_METRICS_PATH)
-    print(CLASSIFICATION_REPORT_PATH)
+    print("Baseline Naive Bayes treinado e registrado com sucesso!")
+    print(f"Experimento salvo em: {experiment_path}")
+    print(f"Accuracy teste: {test_metrics['accuracy']:.4f}")
+    print(f"F1-score macro teste: {test_metrics['f1_macro']:.4f}")
 
 
 if __name__ == "__main__":

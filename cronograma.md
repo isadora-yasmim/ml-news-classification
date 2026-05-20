@@ -118,23 +118,23 @@ Melhorar a qualidade do modelo, organizar experimentos e iniciar práticas de ML
 - [x] Rodar GridSearchCV 
 
 ### Avaliação
-- [ ] Comparar métricas entre versões
-- [ ] Usar Accuracy
-- [ ] Usar Precision
-- [ ] Usar Recall
-- [ ] Usar F1-score
-- [ ] Priorizar F1-score macro se houver desbalanceamento
-- [ ] Gerar gráficos de comparação
+- [x] Comparar métricas entre versões
+- [x] Usar Accuracy
+- [x] Usar Precision
+- [x] Usar Recall
+- [x] Usar F1-score
+- [x] Priorizar F1-score macro se houver desbalanceamento
+- [x] Gerar gráficos de comparação
 
 ### Versionamento e rastreabilidade
-- [ ] Versionar experimentos com arquivos `.json` ou `.csv`
-- [ ] Salvar hiperparâmetros usados
-- [ ] Salvar métricas por execução
-- [ ] Definir melhor modelo até o momento
-- [ ] Criar pasta `reports/figures/`
+- [x] Versionar experimentos com arquivos `.json` ou `.csv`
+- [x] Salvar hiperparâmetros usados
+- [x] Salvar métricas por execução
+- [x] Definir melhor modelo até o momento
+- [x] Criar pasta `reports/figures/`
 
 ### MLOps inicial
-- [ ] Adicionar `requirements.txt` ou `pyproject.toml`
+- [x] Adicionar `requirements.txt` ou `pyproject.toml`
 - [ ] Criar script reproduzível de treino
 - [ ] Criar script reproduzível de avaliação
 - [ ] Adicionar instruções de instalação no README
