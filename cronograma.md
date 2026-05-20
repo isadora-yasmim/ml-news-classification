@@ -135,17 +135,17 @@ Melhorar a qualidade do modelo, organizar experimentos e iniciar práticas de ML
 
 ### MLOps inicial
 - [x] Adicionar `requirements.txt` ou `pyproject.toml`
-- [ ] Criar script reproduzível de treino
-- [ ] Criar script reproduzível de avaliação
-- [ ] Adicionar instruções de instalação no README
-- [ ] Adicionar instruções para reprodução dos resultados
+- [x] Criar script reproduzível de treino
+- [x] Criar script reproduzível de avaliação
+- [x] Adicionar instruções de instalação no README
+- [x] Adicionar instruções para reprodução dos resultados
 
 ### Entregáveis da semana
-- [ ] Modelo otimizado
-- [ ] Registro de experimentos
-- [ ] Gráficos de avaliação
-- [ ] Melhor modelo salvo
-- [ ] README com resultados parciais
+- [x] Modelo otimizado
+- [x] Registro de experimentos
+- [x] Gráficos de avaliação
+- [x] Melhor modelo salvo
+- [x] README com resultados parciais
 
 ---
 

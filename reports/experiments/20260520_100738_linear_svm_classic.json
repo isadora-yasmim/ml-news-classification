@@ -1,0 +1,48 @@
+{
+    "experiment_id": "20260520_100738_linear_svm_classic",
+    "model_name": "linear_svm",
+    "experiment_type": "classic",
+    "created_at": "2026-05-20T10:10:03",
+    "train_metrics": {
+        "accuracy": 0.6940960556678105,
+        "precision_macro": 0.7004052435774204,
+        "recall_macro": 0.5839188411531234,
+        "f1_macro": 0.6237544750306868,
+        "f1_weighted": 0.6813147194276986
+    },
+    "test_metrics": {
+        "accuracy": 0.571766448468632,
+        "precision_macro": 0.4688804710582718,
+        "recall_macro": 0.40574313263392753,
+        "f1_macro": 0.4249997904511319,
+        "f1_weighted": 0.5507491349349678
+    },
+    "tfidf_params": {
+        "max_features": 5000,
+        "ngram_range": [
+            1,
+            2
+        ],
+        "stop_words": "english",
+        "lowercase": true
+    },
+    "model_params": {
+        "C": 1.0,
+        "class_weight": null,
+        "dual": "auto",
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "loss": "squared_hinge",
+        "max_iter": 1000,
+        "multi_class": "ovr",
+        "penalty": "l2",
+        "random_state": 42,
+        "tol": 0.0001,
+        "verbose": 0
+    },
+    "artifacts": {
+        "classification_report": "reports\\experiments\\classification_reports\\20260520_100738_linear_svm_classic_classification_report.txt",
+        "worst_categories": "reports\\experiments\\worst_categories\\20260520_100738_linear_svm_classic_worst_categories.csv"
+    },
+    "extra": {}
+}
