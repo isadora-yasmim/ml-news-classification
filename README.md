@@ -214,43 +214,127 @@ Até o momento, o **Linear SVM** apresenta o melhor desempenho geral considerand
 
 ---
 
-# 🔬 Semana 3 — Melhorias, experimentos e avaliação
+## 🔬 Semana 3 — Melhorias, experimentos, avaliação e rastreabilidade
 
-## Melhorias implementadas
+### Melhorias implementadas
 
-### Otimização de hiperparâmetros
+Durante a Semana 3 do projeto foram adicionadas melhorias importantes relacionadas à:
 
-Foi criado um pipeline reproduzível utilizando:
-
-* `TfidfVectorizer`
-* `LogisticRegression`
-* `GridSearchCV`
-
-Os seguintes parâmetros foram testados:
-
-* `ngram_range`
-* `max_features`
-* `stop_words`
-* `class_weight`
-* `C`
+* otimização de hiperparâmetros;
+* avaliação automatizada;
+* comparação entre modelos;
+* geração automática de gráficos;
+* rastreabilidade e versionamento de experimentos.
 
 ---
 
-## Avaliação e comparação
+###  Versionamento de experimentos
 
-Foi implementado um sistema automatizado para:
+O projeto agora possui um sistema padronizado de rastreamento de experimentos.
 
-* Comparar métricas entre modelos
-* Consolidar resultados
-* Gerar gráficos automaticamente
-* Identificar o melhor modelo
-* Salvar experimentos em `.json` e `.csv`
+Todos os treinamentos passam a gerar artefatos versionados automaticamente em:
+
+```text
+reports/experiments/
+```
+
+Cada execução gera um identificador único baseado em timestamp, modelo e tipo de experimento.
+
+Exemplo:
+
+```text
+20260520_143210_naive_bayes_baseline.json
+20260520_143355_logistic_regression_classic.json
+20260520_143510_linear_svm_classic.json
+20260520_144200_logistic_regression_gridsearch.json
+```
+
+---
+
+### Estrutura padronizada dos experimentos
+
+Os experimentos agora seguem uma estrutura organizada:
+
+```text
+reports/
+├── experiments/
+│   ├── 20260520_143210_naive_bayes_baseline.json
+│   ├── 20260520_143355_logistic_regression_classic.json
+│   ├── 20260520_143510_linear_svm_classic.json
+│   ├── 20260520_144200_logistic_regression_gridsearch.json
+│   │
+│   ├── classification_reports/
+│   ├── worst_categories/
+│   └── cv_results/
+│
+├── figures/
+└── legacy/
+```
+---
+
+### Formato dos experimentos
+
+Os experimentos são salvos em formato `.json`.
+
+Exemplo simplificado:
+
+```json
+{
+  "experiment_id": "20260520_143355_logistic_regression_classic",
+  "model_name": "logistic_regression",
+  "experiment_type": "classic",
+  "created_at": "2026-05-20T14:33:55",
+  "train_metrics": {},
+  "test_metrics": {},
+  "tfidf_params": {},
+  "model_params": {},
+  "artifacts": {}
+}
+```
+
+---
+
+### Comparação automática de métricas
+
+Foi implementado um sistema automático de comparação entre modelos.
+
+As métricas avaliadas são:
+
+* Accuracy
+* Precision macro
+* Recall macro
+* F1-score macro
+* F1-score weighted
+
+O projeto prioriza o **F1-score macro** devido ao desbalanceamento entre categorias.
+
+---
+
+### Gráficos automáticos
 
 Os gráficos são gerados automaticamente em:
 
 ```text
 reports/figures/
 ```
+
+## Comparação geral das métricas
+
+![Comparação de métricas](reports/figures/metrics_summary_comparison.png)
+
+---
+
+## Melhor modelo até o momento
+
+Atualmente o melhor modelo considerando F1-score macro é:
+
+### Linear SVM
+
+Resultados atuais:
+
+* Accuracy: ~0.58
+* F1-score macro: ~0.43
+* F1-score weighted: ~0.55
 
 ---
 
@@ -312,36 +396,29 @@ pip install -r requirements.txt
 python -m src.data.load_data
 ```
 
-## Treinamento dos modelos
+## Baseline — Naive Bayes
 
 ```bash
-python -m src.models.train_model
+python -m src.models.train_naive_bayes
 ```
 
-## Avaliação
+## Modelos clássicos
 
 ```bash
-python -m src.models.evaluate_model
+python -m src.models.train_classic_models
 ```
 
 ## GridSearchCV
 
 ```bash
-python src/models/tune_model.py
+python -m src.models.tune_model
 ```
 
 ## Comparação de métricas
 
 ```bash
-python src/evaluation/compare_experiments.py
+python -m src.evaluation.compare_experiments
 ```
-
-## Matriz de confusão legível
-
-```bash
-python src/evaluation/plot_confusion_matrix.py
-```
-
 ---
 
 # 🤖 Modelos implementados

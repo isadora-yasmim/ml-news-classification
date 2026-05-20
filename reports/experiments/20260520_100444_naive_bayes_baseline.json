@@ -1,0 +1,35 @@
+{
+    "experiment_id": "20260520_100444_naive_bayes_baseline",
+    "model_name": "naive_bayes",
+    "experiment_type": "baseline",
+    "created_at": "2026-05-20T10:05:44",
+    "train_metrics": {
+        "accuracy": 0.5524157390690946,
+        "precision_macro": 0.6899061940770839,
+        "recall_macro": 0.309393510656074,
+        "f1_macro": 0.34309345662320273,
+        "f1_weighted": 0.49712264442361015
+    },
+    "test_metrics": {
+        "accuracy": 0.5221463041712456,
+        "precision_macro": 0.584333798157847,
+        "recall_macro": 0.2744122306980505,
+        "f1_macro": 0.2979018419940964,
+        "f1_weighted": 0.4615777088688523
+    },
+    "tfidf_params": {
+        "max_features": 5000,
+        "ngram_range": [
+            1,
+            2
+        ],
+        "stop_words": "english",
+        "lowercase": true
+    },
+    "model_params": {},
+    "artifacts": {
+        "classification_report": "reports\\experiments\\classification_reports\\20260520_100444_naive_bayes_baseline_classification_report.txt",
+        "worst_categories": "reports\\experiments\\worst_categories\\20260520_100444_naive_bayes_baseline_worst_categories.csv"
+    },
+    "extra": {}
+}

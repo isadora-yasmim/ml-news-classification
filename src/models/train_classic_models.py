@@ -1,24 +1,29 @@
 from pathlib import Path
 
 import pandas as pd
-import matplotlib.pyplot as plt
-
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import (
-    accuracy_score,
-    classification_report,
-    confusion_matrix,
-)
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
+
+from src.utils.experiment_tracker import (
+    calculate_metrics,
+    create_experiment_id,
+    save_classification_report,
+    save_experiment,
+    save_worst_categories,
+)
 
 
 TRAIN_PATH = Path("data/processed/train_processed.csv")
 TEST_PATH = Path("data/processed/test_processed.csv")
 
-METRICS_DIR = Path("reports/metrics")
-FIGURES_DIR = Path("reports/figures")
+TFIDF_PARAMS = {
+    "max_features": 5000,
+    "ngram_range": (1, 2),
+    "stop_words": "english",
+    "lowercase": True,
+}
 
 
 def load_data(path: Path) -> pd.DataFrame:
@@ -28,151 +33,14 @@ def load_data(path: Path) -> pd.DataFrame:
 def create_pipeline(model) -> Pipeline:
     return Pipeline(
         steps=[
-            (
-                "tfidf",
-                TfidfVectorizer(
-                    max_features=5000,
-                    ngram_range=(1, 2),
-                    stop_words="english",
-                    lowercase=True,
-                ),
-            ),
+            ("tfidf", TfidfVectorizer(**TFIDF_PARAMS)),
             ("model", model),
         ]
     )
 
 
-def save_classification_report(
-    y_true,
-    y_pred,
-    model_name: str,
-) -> None:
-    report = classification_report(y_true, y_pred)
-
-    output_path = METRICS_DIR / f"{model_name}_classification_report.txt"
-
-    with open(output_path, "w", encoding="utf-8") as file:
-        file.write(report)
-
-
-def save_confusion_matrix(
-    y_true,
-    y_pred,
-    labels,
-    model_name: str,
-) -> None:
-    matrix = confusion_matrix(y_true, y_pred, labels=labels)
-
-    plt.figure(figsize=(16, 12))
-    plt.imshow(matrix, interpolation="nearest")
-    plt.title(f"Matriz de Confusão - {model_name}")
-    plt.colorbar()
-
-    tick_marks = range(len(labels))
-    plt.xticks(tick_marks, labels, rotation=90, fontsize=8)
-    plt.yticks(tick_marks, labels, fontsize=8)
-
-    plt.xlabel("Classe prevista")
-    plt.ylabel("Classe real")
-    plt.tight_layout()
-
-    output_path = FIGURES_DIR / f"{model_name}_confusion_matrix.png"
-    plt.savefig(output_path, dpi=300)
-    plt.close()
-
-
-def get_worst_categories(y_true, y_pred, model_name: str) -> pd.DataFrame:
-    report = classification_report(
-        y_true,
-        y_pred,
-        output_dict=True,
-        zero_division=0,
-    )
-
-    rows = []
-
-    for category, metrics in report.items():
-        if category in ["accuracy", "macro avg", "weighted avg"]:
-            continue
-
-        rows.append(
-            {
-                "model": model_name,
-                "category": category,
-                "precision": metrics["precision"],
-                "recall": metrics["recall"],
-                "f1_score": metrics["f1-score"],
-                "support": metrics["support"],
-            }
-        )
-
-    df_report = pd.DataFrame(rows)
-
-    return df_report.sort_values(by="f1_score", ascending=True)
-
-
-def evaluate_model(
-    model_name: str,
-    pipeline: Pipeline,
-    X_train,
-    y_train,
-    X_test,
-    y_test,
-    labels,
-) -> dict:
-    print(f"\nTreinando modelo: {model_name}")
-
-    pipeline.fit(X_train, y_train)
-
-    train_predictions = pipeline.predict(X_train)
-    test_predictions = pipeline.predict(X_test)
-
-    train_accuracy = accuracy_score(y_train, train_predictions)
-    test_accuracy = accuracy_score(y_test, test_predictions)
-
-    save_classification_report(y_test, test_predictions, model_name)
-    save_confusion_matrix(y_test, test_predictions, labels, model_name)
-
-    worst_categories = get_worst_categories(
-        y_test,
-        test_predictions,
-        model_name,
-    )
-
-    worst_categories_path = (
-        METRICS_DIR / f"{model_name}_worst_categories.csv"
-    )
-    worst_categories.to_csv(worst_categories_path, index=False)
-
-    print(f"Acurácia no treino: {train_accuracy:.4f}")
-    print(f"Acurácia no teste: {test_accuracy:.4f}")
-
-    print("\nCategorias com pior desempenho:")
-    print(worst_categories.head(10))
-
+def get_models() -> dict:
     return {
-        "model": model_name,
-        "train_accuracy": train_accuracy,
-        "test_accuracy": test_accuracy,
-    }
-
-
-def main() -> None:
-    METRICS_DIR.mkdir(parents=True, exist_ok=True)
-    FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-
-    train_df = load_data(TRAIN_PATH)
-    test_df = load_data(TEST_PATH)
-
-    X_train = train_df["text"]
-    y_train = train_df["category"]
-
-    X_test = test_df["text"]
-    y_test = test_df["category"]
-
-    labels = sorted(y_train.unique())
-
-    models = {
         "logistic_regression": LogisticRegression(
             max_iter=1000,
             solver="saga",
@@ -184,31 +52,105 @@ def main() -> None:
         ),
     }
 
+
+def evaluate_and_register_model(
+    model_name: str,
+    pipeline: Pipeline,
+    X_train,
+    y_train,
+    X_test,
+    y_test,
+) -> dict:
+    experiment_type = "classic"
+    experiment_id = create_experiment_id(model_name, experiment_type)
+
+    print(f"\nTreinando modelo: {model_name}")
+
+    pipeline.fit(X_train, y_train)
+
+    train_predictions = pipeline.predict(X_train)
+    test_predictions = pipeline.predict(X_test)
+
+    train_metrics = calculate_metrics(y_train, train_predictions)
+    test_metrics = calculate_metrics(y_test, test_predictions)
+
+    report_path = save_classification_report(
+        y_true=y_test,
+        y_pred=test_predictions,
+        experiment_id=experiment_id,
+    )
+
+    worst_categories_path = save_worst_categories(
+        y_true=y_test,
+        y_pred=test_predictions,
+        model_name=model_name,
+        experiment_id=experiment_id,
+    )
+
+    model_params = pipeline.named_steps["model"].get_params()
+
+    experiment_path = save_experiment(
+        experiment_id=experiment_id,
+        model_name=model_name,
+        experiment_type=experiment_type,
+        train_metrics=train_metrics,
+        test_metrics=test_metrics,
+        tfidf_params=TFIDF_PARAMS,
+        model_params=model_params,
+        artifacts={
+            "classification_report": str(report_path),
+            "worst_categories": str(worst_categories_path),
+        },
+    )
+
+    print(f"Experimento salvo em: {experiment_path}")
+    print(f"Accuracy teste: {test_metrics['accuracy']:.4f}")
+    print(f"F1-score macro teste: {test_metrics['f1_macro']:.4f}")
+
+    return {
+        "experiment_id": experiment_id,
+        "model": model_name,
+        "accuracy": test_metrics["accuracy"],
+        "precision_macro": test_metrics["precision_macro"],
+        "recall_macro": test_metrics["recall_macro"],
+        "f1_macro": test_metrics["f1_macro"],
+        "f1_weighted": test_metrics["f1_weighted"],
+        "experiment_path": str(experiment_path),
+    }
+
+
+def main() -> None:
+    train_df = load_data(TRAIN_PATH)
+    test_df = load_data(TEST_PATH)
+
+    X_train = train_df["text"]
+    y_train = train_df["category"]
+
+    X_test = test_df["text"]
+    y_test = test_df["category"]
+
     results = []
 
-    for model_name, model in models.items():
+    for model_name, model in get_models().items():
         pipeline = create_pipeline(model)
 
-        result = evaluate_model(
+        result = evaluate_and_register_model(
             model_name=model_name,
             pipeline=pipeline,
             X_train=X_train,
             y_train=y_train,
             X_test=X_test,
             y_test=y_test,
-            labels=labels,
         )
 
         results.append(result)
 
     comparison_df = pd.DataFrame(results)
-    comparison_path = METRICS_DIR / "classic_models_comparison.csv"
-    comparison_df.to_csv(comparison_path, index=False)
 
-    print("\n=== COMPARAÇÃO DOS MODELOS ===")
+    print("\n=== COMPARAÇÃO DOS MODELOS CLÁSSICOS ===")
     print(comparison_df)
 
-    print("\nModelos clássicos treinados e avaliados com sucesso!")
+    print("\nModelos clássicos treinados, avaliados e versionados com sucesso!")
 
 
 if __name__ == "__main__":
