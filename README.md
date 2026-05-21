@@ -288,6 +288,14 @@ uvicorn src.api.main:app --reload
 http://127.0.0.1:8000/docs
 ```
 
+## 🌐 API Documentation
+
+A aplicação está disponível online via Render:
+
+🔗 https://ml-news-classification.onrender.com/docs
+
+A documentação interativa da API foi gerada automaticamente com FastAPI/Swagger UI.
+
 ---
 
 # 🔮 Predição
