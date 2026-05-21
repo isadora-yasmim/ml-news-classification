@@ -1,370 +1,228 @@
 # 📰 ML News Classification
 
-> Projeto em desenvolvimento para construção de um classificador de notícias usando Machine Learning, com foco em aprendizado prático de aplicações de ML e MLOps.
+<p align="center">
+  Classificação automática de notícias utilizando Machine Learning, NLP e FastAPI.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.14-blue" />
+  <img src="https://img.shields.io/badge/scikit--learn-ML-orange" />
+  <img src="https://img.shields.io/badge/fastapi-API-green" />
+  <img src="https://img.shields.io/badge/status-em%20desenvolvimento-yellow" />
+  <img src="https://img.shields.io/badge/license-educational-lightgrey" />
+</p>
 
 ---
 
-# 📌 Sobre o projeto
+# 📌 Visão Geral
 
-O **ML News Classification** é um projeto end-to-end de classificação automática de notícias.
+O **ML News Classification** é um projeto de classificação automática de notícias utilizando técnicas de **Processamento de Linguagem Natural (NLP)** e **Machine Learning supervisionado**.
 
-O objetivo é construir uma pipeline completa de Machine Learning, passando por:
+O sistema recebe uma notícia composta por:
 
-- Coleta e preparação dos dados
-- Análise exploratória
-- Pré-processamento textual
-- Treinamento de modelos
-- Avaliação de desempenho
-- Comparação entre modelos
-- Otimização de hiperparâmetros
-- Versionamento de experimentos
-- Organização do código para produção
-- Práticas de MLOps
+* `headline`
+* `short_description`
 
-Este projeto ainda está em desenvolvimento e será evoluído de forma incremental.
+E retorna automaticamente a categoria prevista da notícia.
 
----
+Além da modelagem preditiva, o projeto também possui foco em:
 
-# 🎯 Objetivos
-
-- Aprender aplicações práticas de Machine Learning em NLP
-- Criar um classificador de notícias por categoria
-- Estruturar uma pipeline de ML reutilizável
-- Aplicar boas práticas de MLOps
-- Construir um projeto forte para portfólio
+* organização de pipelines de ML
+* versionamento de experimentos
+* testes automatizados
+* APIs para inferência
+* boas práticas de engenharia de software
+* fundamentos de MLOps
 
 ---
 
-# 🧠 Problema
+# 🚀 Funcionalidades
 
-Dado o texto de uma notícia, o sistema deverá prever automaticamente sua categoria.
+* Classificação automática de notícias
+* Pipeline de NLP com TF-IDF
+* Modelos clássicos de Machine Learning
+* API REST com FastAPI
+* Sistema de inferência desacoplado
+* Testes automatizados
+* Versionamento de experimentos
+* Estrutura escalável para evolução futura
 
-O texto utilizado para treinamento é formado pela combinação das colunas:
+---
+
+# 📚 Índice
+
+* [Problema](#-problema)
+* [Dataset](#-dataset)
+* [Arquitetura](#-arquitetura)
+* [Stack Utilizada](#-stack-utilizada)
+* [Estrutura do Projeto](#-estrutura-do-projeto)
+* [Pipeline de Machine Learning](#-pipeline-de-machine-learning)
+* [Instalação](#-instalação)
+* [Treinamento](#-treinamento)
+* [Avaliação](#-avaliação)
+* [Execução da API](#-execução-da-api)
+* [Predição](#-predição)
+* [Testes](#-testes)
+* [Resultados](#-resultados)
+* [Experimentos](#-experimentos)
+* [Próximos Passos](#-próximos-passos)
+* [Licença](#-licença)
+
+---
+
+# 🎯 Problema
+
+Portais de notícias produzem milhares de conteúdos diariamente. Realizar a categorização manual desses conteúdos é um processo:
+
+* custoso
+* demorado
+* pouco escalável
+
+Este projeto busca automatizar esse processo utilizando aprendizado de máquina supervisionado.
+
+---
+
+# 🗂 Dataset
+
+O projeto utiliza o dataset de notícias do HuffPost.
+
+| Campo               | Descrição            |
+| ------------------- | -------------------- |
+| `headline`          | Título da notícia    |
+| `short_description` | Resumo da notícia    |
+| `category`          | Categoria da notícia |
+| `authors`           | Autor(es)            |
+| `date`              | Data de publicação   |
+| `link`              | Link da notícia      |
+
+## Estratégia textual
 
 ```python
 headline + " " + short_description
-````
+```
 
-A categoria da notícia é usada como variável alvo do modelo.
+## Volume de dados
+
+* +200 mil notícias
+* 42 categorias
+* Dados textuais reais
 
 ---
 
-# 🗂️ Dataset
+# 🏗 Arquitetura
 
-O projeto utiliza um dataset de notícias contendo informações como:
-
-* Link da notícia
-* Título
-* Categoria
-* Descrição curta
-* Autor
-* Data de publicação
-
-Exemplo:
-
-```json
-{
-  "headline": "Over 4 Million Americans Roll Up Sleeves For Omicron-Targeted COVID Boosters",
-  "category": "U.S. NEWS",
-  "short_description": "Health experts said it is too early to predict whether demand would match up with the new boosters."
-}
+```text
+Texto → Pré-processamento → TF-IDF → Modelo ML → API → Predição
 ```
 
 ---
 
-# 🛠️ Stack utilizada
+# 🛠 Stack Utilizada
 
-## Machine Learning e NLP
+## Linguagem
 
-* Scikit-learn
+* Python 3.14
+
+## Bibliotecas principais
+
+### Data Science
+
 * Pandas
 * NumPy
-* TF-IDF
-* Logistic Regression
-* Linear SVM
-* Naive Bayes
+* Scikit-learn
 
-## Visualização e análise
+### API
 
-* Matplotlib
-* Jupyter Notebook
+* FastAPI
+* Uvicorn
 
-## Persistência de modelos
+### Testes
+
+* Pytest
+* HTTPX
+
+### Persistência
 
 * Joblib
 
-## Qualidade e organização
+## Ferramentas
 
-* Ruff
-* Black
-* Pytest
-
-## Futuras ferramentas de MLOps
-
-* MLflow
-* DVC
-* Docker
-* FastAPI
+* Git
+* GitHub Flow
+* VS Code
 
 ---
 
-# 📁 Estrutura do projeto
+# 📁 Estrutura do Projeto
 
-```bash
+```text
 ml-news-classification/
+│
 ├── data/
-│   ├── raw/
-│   └── processed/
-│       ├── train_processed.csv
-│       └── test_processed.csv
+├── experiments/
 ├── models/
-│   └── best_logistic_regression_model.joblib
 ├── notebooks/
-├── reports/
-│   ├── experiments/
-│   ├── figures/
-│   └── metrics/
 ├── src/
+│   ├── api/
 │   ├── data/
-│   ├── evaluation/
-│   └── models/
+│   ├── inference/
+│   ├── models/
+│   └── utils/
 ├── tests/
 ├── requirements.txt
-├── README.md
-└── .gitignore
+└── README.md
 ```
 
 ---
 
-# 🚧 Status do projeto
+# 🤖 Pipeline de Machine Learning
 
-Projeto em andamento.
+## Pré-processamento
 
-Atualmente, o projeto possui:
+* remoção de valores nulos
+* remoção de textos vazios
+* normalização textual
+* split estratificado
 
-* Dataset carregado e analisado
-* Pipeline TF-IDF implementado
-* Baseline com Naive Bayes
-* Modelos clássicos treinados
-* Comparação entre modelos
-* Avaliação com métricas de classificação
-* Matriz de confusão
-* Otimização inicial com GridSearchCV
-* Rastreamento inicial de experimentos
-* Comparação automática de métricas
-* Geração automática de gráficos
+## Vetorização
 
----
+```python
+TfidfVectorizer(
+    max_features=5000,
+    ngram_range=(1, 2),
+    stop_words="english"
+)
+```
 
-# 📊 Resultados atuais
+## Modelos treinados
 
-## Modelos avaliados
-
-Até o momento foram avaliados:
-
-* Naive Bayes
+* Multinomial Naive Bayes
 * Logistic Regression
 * Linear SVM
-* Logistic Regression com GridSearchCV
 
-## Métricas utilizadas
-
-As principais métricas usadas no projeto são:
+## Avaliação
 
 * Accuracy
-* Precision
-* Recall
-* F1-score macro
-* F1-score weighted
+* Classification Report
 * Confusion Matrix
 
-O projeto prioriza o **F1-score macro**, pois o dataset possui desbalanceamento entre categorias.
-
 ---
 
-# 📈 Comparação entre modelos
+# ⚙ Instalação
 
-Abaixo está o gráfico consolidado de comparação entre os experimentos realizados até o momento.
-
-## Comparação geral das métricas
-
-![Comparação de métricas](reports/figures/metrics_summary_comparison.png)
-
----
-
-# 🧪 Resultados parciais
-
-## Baseline — Naive Bayes
-
-* Accuracy no teste: **0.5221** 
-
-## Logistic Regression
-
-* Accuracy: **0.57**
-* F1-score macro: **0.42**
-* F1-score weighted: **0.55** 
-
-## Linear SVM
-
-* Accuracy: **0.58**
-* F1-score macro: **0.43**
-* F1-score weighted: **0.55** 
-
-Até o momento, o **Linear SVM** apresenta o melhor desempenho geral considerando F1-score macro.
-
----
-
-## 🔬 Semana 3 — Melhorias, experimentos, avaliação e rastreabilidade
-
-### Melhorias implementadas
-
-Durante a Semana 3 do projeto foram adicionadas melhorias importantes relacionadas à:
-
-* otimização de hiperparâmetros;
-* avaliação automatizada;
-* comparação entre modelos;
-* geração automática de gráficos;
-* rastreabilidade e versionamento de experimentos.
-
----
-
-###  Versionamento de experimentos
-
-O projeto agora possui um sistema padronizado de rastreamento de experimentos.
-
-Todos os treinamentos passam a gerar artefatos versionados automaticamente em:
-
-```text
-reports/experiments/
-```
-
-Cada execução gera um identificador único baseado em timestamp, modelo e tipo de experimento.
-
-Exemplo:
-
-```text
-20260520_143210_naive_bayes_baseline.json
-20260520_143355_logistic_regression_classic.json
-20260520_143510_linear_svm_classic.json
-20260520_144200_logistic_regression_gridsearch.json
-```
-
----
-
-### Estrutura padronizada dos experimentos
-
-Os experimentos agora seguem uma estrutura organizada:
-
-```text
-reports/
-├── experiments/
-│   ├── 20260520_143210_naive_bayes_baseline.json
-│   ├── 20260520_143355_logistic_regression_classic.json
-│   ├── 20260520_143510_linear_svm_classic.json
-│   ├── 20260520_144200_logistic_regression_gridsearch.json
-│   │
-│   ├── classification_reports/
-│   ├── worst_categories/
-│   └── cv_results/
-│
-├── figures/
-└── legacy/
-```
----
-
-### Formato dos experimentos
-
-Os experimentos são salvos em formato `.json`.
-
-Exemplo simplificado:
-
-```json
-{
-  "experiment_id": "20260520_143355_logistic_regression_classic",
-  "model_name": "logistic_regression",
-  "experiment_type": "classic",
-  "created_at": "2026-05-20T14:33:55",
-  "train_metrics": {},
-  "test_metrics": {},
-  "tfidf_params": {},
-  "model_params": {},
-  "artifacts": {}
-}
-```
-
----
-
-### Comparação automática de métricas
-
-Foi implementado um sistema automático de comparação entre modelos.
-
-As métricas avaliadas são:
-
-* Accuracy
-* Precision macro
-* Recall macro
-* F1-score macro
-* F1-score weighted
-
-O projeto prioriza o **F1-score macro** devido ao desbalanceamento entre categorias.
-
----
-
-### Gráficos automáticos
-
-Os gráficos são gerados automaticamente em:
-
-```text
-reports/figures/
-```
-
-## Comparação geral das métricas
-
-![Comparação de métricas](reports/figures/metrics_summary_comparison.png)
-
----
-
-## Melhor modelo até o momento
-
-Atualmente o melhor modelo considerando F1-score macro é:
-
-### Linear SVM
-
-Resultados atuais:
-
-* Accuracy: ~0.58
-* F1-score macro: ~0.43
-* F1-score weighted: ~0.55
-
----
-
-# 🚀 Como rodar o projeto
-
-## 1. Clone o repositório
+## Clonar repositório
 
 ```bash
 git clone https://github.com/seu-usuario/ml-news-classification.git
 ```
 
----
-
-## 2. Acesse a pasta
-
-```bash
-cd ml-news-classification
-```
-
----
-
-## 3. Crie o ambiente virtual
+## Criar ambiente virtual
 
 ```bash
 python -m venv .venv
 ```
 
----
-
-## 4. Ative o ambiente virtual
+## Ativar ambiente virtual
 
 ### Windows
 
@@ -372,15 +230,13 @@ python -m venv .venv
 .venv\Scripts\activate
 ```
 
-### Linux/Mac
+### Linux/macOS
 
 ```bash
 source .venv/bin/activate
 ```
 
----
-
-## 5. Instale as dependências
+## Instalar dependências
 
 ```bash
 pip install -r requirements.txt
@@ -388,107 +244,144 @@ pip install -r requirements.txt
 
 ---
 
-# 🧪 Execução dos scripts
+# 🧠 Treinamento
 
-## Pré-processamento
-
-```bash
-python -m src.data.load_data
-```
-
-## Baseline — Naive Bayes
+## Naive Bayes
 
 ```bash
-python -m src.models.train_naive_bayes
+python src/models/train_naive_bayes.py
 ```
 
-## Modelos clássicos
+## Logistic Regression
 
 ```bash
-python -m src.models.train_classic_models
+python src/models/train_logistic_regression.py
 ```
 
-## GridSearchCV
+## Linear SVM
 
 ```bash
-python -m src.models.tune_model
+python src/models/train_linear_svm.py
 ```
-
-## Comparação de métricas
-
-```bash
-python -m src.evaluation.compare_experiments
-```
----
-
-# 🤖 Modelos implementados
-
-## Baseline
-
-* Naive Bayes
-
-## Modelos clássicos
-
-* Logistic Regression
-* Linear SVM
-
-## Modelos otimizados
-
-* Logistic Regression com GridSearchCV
 
 ---
 
-# 📌 Roadmap
+# 📊 Avaliação
 
-* [x] Setup inicial
-* [x] Análise exploratória
-* [x] Pipeline TF-IDF
-* [x] Modelo baseline
-* [x] Comparação entre modelos clássicos
-* [x] Avaliação com métricas
-* [x] Matriz de confusão
-* [x] GridSearchCV
-* [x] Rastreamento inicial de experimentos
-* [x] Comparação automática de métricas
-* [ ] MLflow
-* [ ] DVC
-* [ ] API com FastAPI
-* [ ] Docker
-* [ ] CI/CD
-* [ ] Deploy
+Os relatórios de métricas e experimentos são armazenados em:
+
+```text
+experiments/
+```
 
 ---
 
-# 🌿 GitHub Flow
+# 🌐 Execução da API
 
-Este projeto segue o modelo **GitHub Flow**.
+```bash
+uvicorn src.api.main:app --reload
+```
 
-## Convenções de branches
+## Swagger/OpenAPI
 
-* `feat/...`
-* `fix/...`
-* `docs/...`
-* `refactor/...`
-* `chore/...`
+```text
+http://127.0.0.1:8000/docs
+```
 
-## Conventional Commits
+## 🌐 API Documentation
 
-* `feat:`
-* `fix:`
-* `docs:`
-* `refactor:`
-* `chore:`
+A aplicação está disponível online via Render:
+
+🔗 https://ml-news-classification.onrender.com/docs
+
+A documentação interativa da API foi gerada automaticamente com FastAPI/Swagger UI.
+
+---
+
+# 🔮 Predição
+
+## Endpoint `/predict`
+
+### Entrada
+
+```json
+{
+  "headline": "New technology is changing the way people work",
+  "short_description": "Companies are adopting artificial intelligence tools to improve productivity."
+}
+```
+
+### Saída
+
+```json
+{
+  "predicted_category": "TECH",
+  "confidence": 0.7321
+}
+```
+
+---
+
+# 🧪 Testes
+
+```bash
+pytest -v
+```
+
+Testes implementados:
+
+* carregamento do modelo
+* predição
+* API FastAPI
+* validação de entrada
+* texto vazio
+* texto curto
+
+---
+
+# 📈 Resultados
+
+| Modelo              | Accuracy     |
+| ------------------- | ------------ |
+| Naive Bayes         | 0.5221       |
+| Logistic Regression | Em avaliação |
+| Linear SVM          | Em avaliação |
+
+---
+
+# 🧾 Experimentos
+
+Os experimentos são versionados em arquivos `.json` contendo:
+
+* modelo
+* hiperparâmetros
+* métricas
+* timestamp
+
+---
+
+# 🔭 Próximos Passos
+
+* Docker
+* CI/CD
+* Deploy em nuvem
+* Monitoramento de modelos
+* Transformers
+* Frontend para inferência
+* Autenticação na API
+
+---
+
+# ✅ Boas práticas utilizadas
+
+* GitHub Flow
+* Conventional Commits
+* Arquitetura modular
+* Testes automatizados
+* Versionamento de experimentos
 
 ---
 
 # 📄 Licença
 
-Projeto desenvolvido para fins de estudo, prática de Machine Learning e construção de portfólio.
-
-
-Commit sugerido:
-
-```bash
-git add README.md
-git commit -m "docs: update readme with week 2 progress"
-````
+Projeto desenvolvido para fins educacionais e estudo de Machine Learning, NLP e MLOps.

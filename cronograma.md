@@ -181,33 +181,33 @@ Transformar o modelo em uma aplicação utilizável e finalizar a documentação
 - [x] Testar comportamento com texto muito curto
 
 ### Documentação final
-- [ ] Atualizar README completo
-- [ ] Adicionar descrição do problema
-- [ ] Adicionar descrição do dataset
-- [ ] Adicionar stack utilizada
-- [ ] Adicionar estrutura de pastas
-- [ ] Adicionar como instalar
-- [ ] Adicionar como treinar
-- [ ] Adicionar como avaliar
-- [ ] Adicionar como executar predição
-- [ ] Adicionar tabela de resultados
-- [ ] Adicionar próximos passos
+- [x] Atualizar README completo
+- [x] Adicionar descrição do problema
+- [x] Adicionar descrição do dataset
+- [x] Adicionar stack utilizada
+- [x] Adicionar estrutura de pastas
+- [x] Adicionar como instalar
+- [x] Adicionar como treinar
+- [x] Adicionar como avaliar
+- [x] Adicionar como executar predição
+- [x] Adicionar tabela de resultados
+- [x] Adicionar próximos passos
 
 ### Finalização
-- [ ] Revisar código
-- [ ] Remover arquivos desnecessários
-- [ ] Conferir commits
-- [ ] Criar PR final
-- [ ] Escrever descrição da PR
-- [ ] Fazer merge na `main`
+- [x] Revisar código
+- [x] Remover arquivos desnecessários
+- [x] Conferir commits
+- [x] Criar PR final
+- [x] Escrever descrição da PR
+- [x] Fazer merge na `main`
 
 ### Entregáveis da semana
-- [ ] Projeto funcional
-- [ ] Modelo treinado salvo
-- [ ] API ou CLI funcionando
-- [ ] Testes básicos criados
-- [ ] README finalizado
-- [ ] Projeto pronto para portfólio
+- [x] Projeto funcional
+- [x] Modelo treinado salvo
+- [x] API funcionando
+- [x] Testes básicos criados
+- [x] README finalizado
+- [x] Projeto pronto para portfólio
 
 ---
 
@@ -219,25 +219,24 @@ Ao final do cronograma, o projeto deve conter:
 - [x] Análise exploratória
 - [x] Pipeline de treinamento
 - [x] Modelo baseline
-- [ ] Modelo otimizado
-- [ ] Avaliação com métricas
-- [ ] Gráficos de resultados
-- [ ] Modelo salvo
-- [ ] API ou CLI para predição
-- [ ] Documentação completa
-- [ ] Fluxo organizado com GitHub Flow
+- [x] Modelo otimizado
+- [x] Avaliação com métricas
+- [x] Gráficos de resultados
+- [x] Modelo salvo
+- [x] API para predição
+- [x] Documentação completa
+- [x] Fluxo organizado com GitHub Flow
 
 ---
 
-# 🚀 Extras para deixar o projeto mais forte
+# Melhorias futuras
 
-Se sobrar tempo:
 
 - [x] Adicionar Docker
 - [ ] Adicionar MLflow
 - [ ] Adicionar DVC para versionamento de dados
 - [ ] Criar GitHub Actions para testes
-- [ ] Criar deploy simples da API
+- [x] Criar deploy simples da API
 - [ ] Testar modelo com BERT
 - [ ] Criar dashboard simples com Streamlit
 - [ ] Adicionar monitoramento de drift
