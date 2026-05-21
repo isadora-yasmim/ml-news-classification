@@ -229,15 +229,14 @@ Ao final do cronograma, o projeto deve conter:
 
 ---
 
-# 🚀 Extras para deixar o projeto mais forte
+# Melhorias futuras
 
-Se sobrar tempo:
 
 - [x] Adicionar Docker
 - [ ] Adicionar MLflow
 - [ ] Adicionar DVC para versionamento de dados
 - [ ] Criar GitHub Actions para testes
-- [ ] Criar deploy simples da API
+- [x] Criar deploy simples da API
 - [ ] Testar modelo com BERT
 - [ ] Criar dashboard simples com Streamlit
 - [ ] Adicionar monitoramento de drift
