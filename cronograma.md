@@ -181,17 +181,17 @@ Transformar o modelo em uma aplicação utilizável e finalizar a documentação
 - [x] Testar comportamento com texto muito curto
 
 ### Documentação final
-- [ ] Atualizar README completo
-- [ ] Adicionar descrição do problema
-- [ ] Adicionar descrição do dataset
-- [ ] Adicionar stack utilizada
-- [ ] Adicionar estrutura de pastas
-- [ ] Adicionar como instalar
-- [ ] Adicionar como treinar
-- [ ] Adicionar como avaliar
-- [ ] Adicionar como executar predição
-- [ ] Adicionar tabela de resultados
-- [ ] Adicionar próximos passos
+- [x] Atualizar README completo
+- [x] Adicionar descrição do problema
+- [x] Adicionar descrição do dataset
+- [x] Adicionar stack utilizada
+- [x] Adicionar estrutura de pastas
+- [x] Adicionar como instalar
+- [x] Adicionar como treinar
+- [x] Adicionar como avaliar
+- [x] Adicionar como executar predição
+- [x] Adicionar tabela de resultados
+- [x] Adicionar próximos passos
 
 ### Finalização
 - [ ] Revisar código
