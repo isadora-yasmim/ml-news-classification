@@ -174,11 +174,11 @@ Transformar o modelo em uma aplicação utilizável e finalizar a documentação
 
 
 ### Testes
-- [ ] Criar testes básicos para pré-processamento
-- [ ] Criar teste para carregamento do modelo
-- [ ] Criar teste para predição
-- [ ] Testar comportamento com texto vazio
-- [ ] Testar comportamento com texto muito curto
+- [x] Criar testes básicos para pré-processamento
+- [x] Criar teste para carregamento do modelo
+- [x] Criar teste para predição
+- [x] Testar comportamento com texto vazio
+- [x] Testar comportamento com texto muito curto
 
 ### Documentação final
 - [ ] Atualizar README completo
