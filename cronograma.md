@@ -194,20 +194,20 @@ Transformar o modelo em uma aplicação utilizável e finalizar a documentação
 - [x] Adicionar próximos passos
 
 ### Finalização
-- [ ] Revisar código
-- [ ] Remover arquivos desnecessários
-- [ ] Conferir commits
-- [ ] Criar PR final
-- [ ] Escrever descrição da PR
-- [ ] Fazer merge na `main`
+- [x] Revisar código
+- [x] Remover arquivos desnecessários
+- [x] Conferir commits
+- [x] Criar PR final
+- [x] Escrever descrição da PR
+- [x] Fazer merge na `main`
 
 ### Entregáveis da semana
-- [ ] Projeto funcional
-- [ ] Modelo treinado salvo
-- [ ] API ou CLI funcionando
-- [ ] Testes básicos criados
-- [ ] README finalizado
-- [ ] Projeto pronto para portfólio
+- [x] Projeto funcional
+- [x] Modelo treinado salvo
+- [x] API funcionando
+- [x] Testes básicos criados
+- [x] README finalizado
+- [x] Projeto pronto para portfólio
 
 ---
 
@@ -219,13 +219,13 @@ Ao final do cronograma, o projeto deve conter:
 - [x] Análise exploratória
 - [x] Pipeline de treinamento
 - [x] Modelo baseline
-- [ ] Modelo otimizado
-- [ ] Avaliação com métricas
-- [ ] Gráficos de resultados
-- [ ] Modelo salvo
-- [ ] API ou CLI para predição
-- [ ] Documentação completa
-- [ ] Fluxo organizado com GitHub Flow
+- [x] Modelo otimizado
+- [x] Avaliação com métricas
+- [x] Gráficos de resultados
+- [x] Modelo salvo
+- [x] API para predição
+- [x] Documentação completa
+- [x] Fluxo organizado com GitHub Flow
 
 ---
 
