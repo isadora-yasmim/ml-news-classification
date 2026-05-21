@@ -157,35 +157,28 @@ Transformar o modelo em uma aplicação utilizável e finalizar a documentação
 ## Checklist
 
 ### Interface de uso
-- [ ] Criar função de predição
-- [ ] Permitir classificar uma notícia nova
-- [ ] Criar entrada com `headline`
-- [ ] Criar entrada com `short_description`
-- [ ] Retornar categoria prevista
-- [ ] Retornar probabilidade/confiança, se o modelo permitir
+- [x] Criar função de predição
+- [x] Permitir classificar uma notícia nova
+- [x] Criar entrada com `headline`
+- [x] Criar entrada com `short_description`
+- [x] Retornar categoria prevista
+- [x] Retornar probabilidade/confiança, se o modelo permitir
 
-### API ou CLI
-Escolher uma das opções:
 
-#### Opção A — API com FastAPI
-- [ ] Criar endpoint `/predict`
-- [ ] Criar endpoint `/health`
-- [ ] Criar schema de entrada
-- [ ] Criar schema de saída
-- [ ] Testar API localmente
+#### API com FastAPI
+- [x] Criar endpoint `/predict`
+- [x] Criar endpoint `/health`
+- [x] Criar schema de entrada
+- [x] Criar schema de saída
+- [x] Testar API localmente
 
-#### Opção B — CLI
-- [ ] Criar comando para prever categoria
-- [ ] Permitir entrada por argumento
-- [ ] Exibir categoria prevista no terminal
-- [ ] Documentar uso no README
 
 ### Testes
-- [ ] Criar testes básicos para pré-processamento
-- [ ] Criar teste para carregamento do modelo
-- [ ] Criar teste para predição
-- [ ] Testar comportamento com texto vazio
-- [ ] Testar comportamento com texto muito curto
+- [x] Criar testes básicos para pré-processamento
+- [x] Criar teste para carregamento do modelo
+- [x] Criar teste para predição
+- [x] Testar comportamento com texto vazio
+- [x] Testar comportamento com texto muito curto
 
 ### Documentação final
 - [ ] Atualizar README completo
